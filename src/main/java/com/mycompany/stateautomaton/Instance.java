@@ -8,19 +8,24 @@ package com.mycompany.stateautomaton;
 import com.mycompany.stateautomaton.DynamicAnalyser.State;
 import java.util.ArrayList;
 
-/**
- *
- * @author williambech
- */
 public class Instance {
     
     int instance;
-    ArrayList<LogEntry> logs;
-    DynamicAnalyser da;
+    ArrayList<LogEntry> logs = new ArrayList();
+    Generator gen;
+    String regex;
 
-    public Instance(int instance) {
+    public Instance(int instance, String regex) {
         this.instance = instance;
-        this.da = new DynamicAnalyser();
+        this.regex = regex;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
     
     public ArrayList<LogEntry> getLogList() {
@@ -43,15 +48,26 @@ public class Instance {
         logs.add(log);
     }
     
-    public DynamicAnalyser getDynamicAnalyser() {
-        return this.da;
+    public void processLogs() {
+        ArrayList<String> actions = new ArrayList();
+
+        for (LogEntry log : logs) {
+            actions.add(log.getAction());
+        }
+        
+        this.gen = new Generator(regex, actions);
+        gen.generate();
     }
     
-    public State getState() {
-        return da.getState();
+    public Generator getGenerator() {
+        return this.gen;
     }
     
-    public boolean isStateFinal() {
-        return da.isStateFinal();
+    public String getState() {
+        return gen.getState();
+    }
+    
+    public void isStateFinal() {
+        gen.isStateFinal();
     }
 }

@@ -7,18 +7,14 @@ package com.mycompany.stateautomaton;
 
 import java.util.Date;
 
-/**
- *
- * @author williambech
- */
 public class LogEntry {
     String level;
     int system;
     int instance;
-    int action;
+    String action;
     Date timestamp;
 
-    public LogEntry(String level, int system, int instance, int action) {
+    public LogEntry(String level, int system, int instance, String action) {
         this.level = level;
         this.system = system;
         this.instance = instance;
@@ -50,11 +46,11 @@ public class LogEntry {
         this.instance = instance;
     }
 
-    public int getAction() {
+    public String getAction() {
         return action;
     }
 
-    public void setAction(int action) {
+    public void setAction(String action) {
         this.action = action;
     }
 

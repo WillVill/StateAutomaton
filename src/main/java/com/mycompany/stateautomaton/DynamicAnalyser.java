@@ -11,6 +11,9 @@ package com.mycompany.stateautomaton;
  */
 public class DynamicAnalyser {
     
+    // This is a hard coded example of what the generator would ultimately want
+    // to achieve.
+    
     protected enum State {
         IDLE, FALSE_STATE, LOGGED_IN, LISTING_ITEM, EDITING_ITEM, LOGGED_OUT
     }
